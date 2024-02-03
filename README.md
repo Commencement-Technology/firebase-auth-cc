@@ -1,30 +1,84 @@
-# React + TypeScript + Vite
+Ballers Boutique E-Commerce Website
+Welcome to Ballers Boutique, your go-to destination for top-notch products! This e-commerce website is built using React, TypeScript, and Tailwind CSS, with Firebase Authentication handling user authentication.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Table of Contents
+Features
+Prerequisites
+Getting Started
+Authentication
+Usage
+Contributing
+License
+Features
+User Authentication:
 
-Currently, two official plugins are available:
+Email/Password Sign In
+Google Sign In
+User Registration with Email/Password and Google
+User Account Management:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Update Email
+Change Password
+Account Deletion (with Reauthentication)
+Pages:
 
-## Expanding the ESLint configuration
+Login Page
+Registration Page
+My Account Page
+Security:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Secure handling of sensitive user data
+Reauthentication for critical operations
+Prerequisites
+Before you begin, ensure you have the following installed:
 
-- Configure the top-level `parserOptions` property like this:
+Node.js and npm
+Firebase account with Authentication enabled
+Tailwind CSS configured in your project
+Getting Started
+Clone the repository:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+git clone https://github.com/yourusername/ballers-boutique.git
+cd ballers-boutique
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Install dependencies:
+
+```
+npm install
+```
+
+Configure Firebase:
+
+Create a Firebase project and enable Authentication.
+Obtain your Firebase config and replace it in the project.
+Start the development server:
+
+```
+npm start
+```
+Your Ballers Boutique website should be running at http://localhost:3000.
+
+Authentication
+Ballers Boutique uses Firebase Authentication for handling user authentication. You need to configure Firebase in your project:
+
+Set up a Firebase project: Firebase Console.
+Enable Authentication and configure providers (Email/Password, Google).
+Update your Firebase configuration in the project (usually found in src/firebase.ts).
+
+Usage
+Login:
+
+Access the login page to sign in with your email and password.
+Alternatively, use the Google Sign In option for a quick login.
+
+Registration:
+
+Create a new account using the registration page.
+Choose either Email/Password or Google registration.
+
+My Account:
+
+Access the My Account page to update email or change the password.
+Safely delete your account with reauthentication for security.
