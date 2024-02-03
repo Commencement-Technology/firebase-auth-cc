@@ -1,11 +1,16 @@
 import {
+  EmailAuthProvider,
   createUserWithEmailAndPassword,
+  reauthenticateWithCredential,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  updateEmail,
 } from "firebase/auth";
 import { auth } from "../..";
 import { RoutesEnum } from "../../../../routes";
 import { NavigateFunction } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
+import { generateFirebaseAuthErrorMessage } from "../ErrorHandler";
 
 export const registerUser = async (
   name: string,
@@ -30,6 +35,9 @@ export const registerUser = async (
       `A verification email has been sent to your email address ${name}!. Please verify your email to login.`
     );
   } catch (error) {
+    if (error instanceof FirebaseError) {
+      generateFirebaseAuthErrorMessage(error);
+    }
     console.error(error);
   } finally {
     setLoading(false);
@@ -57,6 +65,41 @@ export const loginUserWithEmailAndPassword = async (
     }
     navigate(RoutesEnum.Home);
   } catch (error) {
+    if (error instanceof FirebaseError) {
+      generateFirebaseAuthErrorMessage(error);
+    }
     console.error(error);
+  }
+};
+
+export const updateUserEmail = async (
+  email: string,
+  newEmail: string,
+  password: string,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  try {
+    if (auth.currentUser === null) return;
+    setIsLoading(true);
+
+    // Reauthenticate the user before updating the email
+    const credential = EmailAuthProvider.credential(email, password);
+    await reauthenticateWithCredential(auth.currentUser, credential);
+
+    // Update the email after successful reauthentication
+    await updateEmail(auth.currentUser, newEmail);
+
+    // Send email verification to the new email
+    await sendEmailVerification(auth.currentUser);
+    alert(
+      `A verification email has been sent to your new email address ${newEmail}!. Please verify your email to login.`
+    );
+  } catch (error) {
+    if (error instanceof FirebaseError) {
+      generateFirebaseAuthErrorMessage(error);
+    }
+    console.error(error);
+  } finally {
+    setIsLoading(false);
   }
 };

@@ -7,6 +7,7 @@ import logo from "../../assets/logo.png";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import { navigation } from "./helper";
 import Toggle from "../Toggle";
+import SignIn from "./SignIn";
 
 const MobileHeader: React.FC<MobileHeaderProps> = ({
   mobileMenuOpen,
@@ -53,12 +54,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
               ))}
             </div>
             <div className="py-6">
-              <Link
-                to={RoutesEnum.Login}
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              >
-                Log in
-              </Link>
+              <SignIn />
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { loginUserWithEmailAndPassword } from "../../lib/firebase/Authentication/EmailAuth";
 import { useState } from "react";
+import { RoutesEnum } from "../../routes";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -30,12 +31,12 @@ const LoginForm = () => {
         value={password}
         onChange={setPassword}
       />
-      <a
-        href="#"
+      <Link
+        to={RoutesEnum.ForgotPassword}
         className="flex justify-end text-sm leading-6 font-semibold text-red-600 hover:text-red-500"
       >
         Forgot Password
-      </a>
+      </Link>
       <Button type="submit" text="Sign In" />
     </form>
   );

@@ -6,6 +6,7 @@ import { DesktopHeaderProps, NavigationType } from "./types";
 import MenuIcon from "./MenuIcon";
 import { navigation } from "./helper";
 import Toggle from "../Toggle";
+import SignIn from "./SignIn";
 
 const DesktopHeader: React.FC<DesktopHeaderProps> = ({
   setMobileMenuOpen,
@@ -40,9 +41,7 @@ const DesktopHeader: React.FC<DesktopHeaderProps> = ({
       {/* login */}
       <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-4">
         <Toggle darkMode={darkMode} setDarkMode={setDarkMode} />
-        <Link to={RoutesEnum.Login} className="text-sm font-semibold leading-6">
-          Log in <span aria-hidden="true">&rarr;</span>
-        </Link>
+        <SignIn />
       </div>
     </nav>
   );
