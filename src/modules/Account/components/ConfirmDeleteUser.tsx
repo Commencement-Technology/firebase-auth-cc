@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../lib/firebase";
-import { deleteUserFromFirestore } from "../../../lib/firebase/DeleteAuth";
+// import { deleteUserFromFirestore } from "../../../lib/firebase/DeleteAuth";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import { deleteUserFromFirestore } from "../../../lib/firebase/Authentication/DeleteUser";
 
 const ConfirmDeleteUser: React.FC = () => {
   const navigate = useNavigate();
@@ -26,13 +27,7 @@ const ConfirmDeleteUser: React.FC = () => {
           text="Confirm delete"
           type="button"
           handleClick={() =>
-            deleteUserFromFirestore(
-              password,
-              navigate,
-              false,
-              true,
-              setIsLoading
-            )
+            deleteUserFromFirestore(navigate, false, true, setIsLoading)
           }
         />
       </div>
@@ -54,11 +49,11 @@ const ConfirmDeleteUser: React.FC = () => {
           type="button"
           handleClick={() =>
             deleteUserFromFirestore(
-              password,
               navigate,
               true,
               false,
-              setIsLoading
+              setIsLoading,
+              password
             )
           }
         />

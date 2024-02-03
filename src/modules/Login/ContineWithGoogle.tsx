@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import { signInUserWithGoogle } from "../../lib/firebase/Authentication/GoogleAuth";
+
 const ContinueWithGoogle = () => {
+  const navigate = useNavigate();
   return (
     <>
       {/* Continue with */}
@@ -18,11 +22,11 @@ const ContinueWithGoogle = () => {
         </div>
       </div>
       {/* Button */}
-      <div className="mt-6 grid grid-cols-1">
-        <a
-          href="#"
-          className="flex w-full items-center justify-center gap-3 rounded-md bg-[#020202] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#020202] hover:bg-red-500"
-        >
+      <div
+        className="mt-6 grid grid-cols-1"
+        onClick={() => signInUserWithGoogle(navigate)}
+      >
+        <a className="flex w-full items-center justify-center gap-3 rounded-md bg-[#020202] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#020202] hover:bg-red-500">
           <svg fill="currentColor" className="h-5 w-5" viewBox="0 0 210 210">
             <path
               d="M0,105C0,47.103,47.103,0,105,0c23.383,0,45.515,7.523,64.004,21.756l-24.4,31.696C133.172,44.652,119.477,40,105,40
