@@ -3,9 +3,11 @@ import React from "react";
 type InputProps = {
   label: string;
   name: string;
+  value: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Input: React.FC<InputProps> = ({ name, label }) => {
+const Input: React.FC<InputProps> = ({ name, label, value, onChange }) => {
   return (
     <div>
       <label
@@ -18,6 +20,8 @@ const Input: React.FC<InputProps> = ({ name, label }) => {
         type={name}
         id={name}
         required
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="mt-2 block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
       />
     </div>
